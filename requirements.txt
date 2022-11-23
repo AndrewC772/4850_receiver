@@ -1,0 +1,4 @@
+connexion==2.14.1
+pykafka==2.8.0
+PyYAML==6.0
+requests==2.25.1

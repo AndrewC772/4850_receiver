@@ -1,0 +1,117 @@
+---
+openapi: 3.0.0
+info:
+  title: Network-Management-Api
+  description: API for network and device management
+  contact:
+    email: achen178@my.bcit.ca
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /health:
+    get:
+      operationId: app.get_health
+      responses:
+        '200':
+          description: ok
+  /devices:
+    post:
+      tags:
+      - Device
+      description: Add a device
+      operationId: app.post_device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceCreate'
+      responses:
+        "200":
+          description: Successfully registered device!
+        "400":
+          description: Error! unable to register new device or invalid request
+  /networks:
+    post:
+      tags:
+      - Networks
+      description: Add a network
+      operationId: app.post_network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkCreate'
+      responses:
+        "200":
+          description: Added a network
+        "400":
+          description: failed to add a new network.
+components:
+  schemas:
+    NetworkCreate:
+      required:
+      - network_id
+      - network_name
+      - network
+      - subnet_mask
+      type: object
+      properties:
+        network_id:
+          type: integer
+          format: int64
+          example: 1
+        network_name:
+          type: string
+          example: network name
+        network:
+          type: string
+          example: 192.168.0.0
+        subnet_mask:
+          type: string
+          example: 255.255.255.0
+        gateway:
+          type: string
+          example: 192.168.0.1
+        dns:
+          type: string
+          example: 192.168.0.1
+        device_count:
+          type: integer
+          format: int32
+          example: 10
+    DeviceCreate:
+      required:
+      - device_id
+      - device_name
+      - mac
+      - ip
+      - latency
+      - network_id
+      type: object
+      properties:
+        device_id:
+          type: integer
+          format: int64
+          example: 1
+        device_name:
+          type: string
+          example: device name
+        mac:
+          type: string
+          example: 0a:51:4b:76:a0:f8
+        ip:
+          type: string
+          example: 192.168.0.50
+        latency:
+          type: number
+          format: float64
+          example: 1.45
+
+        network_id:
+          type: integer
+          format: int64
+          example: 1
+        last_update:
+          type: string
+          format: date-time

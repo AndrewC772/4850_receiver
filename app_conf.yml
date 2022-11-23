@@ -1,0 +1,12 @@
+version: 1
+eventstore1:
+  url: http://localhost:8090/devices
+eventstore2:
+  url: http://localhost:8090/networks
+events:
+  hostname: lab6a-andrew.switzerlandnorth.cloudapp.azure.com
+  port: 9092
+  topic: events
+kafka:
+  retry: 30
+  retry_wait: 5
