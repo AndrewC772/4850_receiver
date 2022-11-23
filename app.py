@@ -58,6 +58,7 @@ def get_health():
     return 200
 
 def post_device(body):
+    logger.info("TESTING DEVICE")
     trace_id = str(uuid.uuid4())
     body['trace_id'] = trace_id
 
